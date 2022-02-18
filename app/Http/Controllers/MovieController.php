@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Movie;
+use App\Models\Language;
 use DB;
 
 class MovieController extends Controller
@@ -46,5 +47,10 @@ class MovieController extends Controller
         return response()->view('mmc', [
             'data' => $movie->mmc
         ])->header('Content-Type', 'text/xml');
+    }
+
+    public function allLanguages(Request $request){        
+        $langs = Language::get();
+        return $langs;
     }
 }
