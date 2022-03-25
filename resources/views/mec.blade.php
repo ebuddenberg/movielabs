@@ -5,31 +5,39 @@
  xmlns:mdmec="http://www.movielabs.com/schema/mdmec/v2.9">
 	
 	<mdmec:Basic ContentID="{{$data['BasicMetadata-type']['@ContentID']}}">
-		<md:LocalizedInfo language="{{$data['BasicMetadata-type']['LocalizedInfo']['@Language']}}">
+	@foreach($data['BasicMetadata-type']['LocalizedInfo'] as $LocalizedInfo)
+		<md:LocalizedInfo language="{{$LocalizedInfo['@Language']}}">
 			<!-- TitleDisplayUnlimited is required by Amazon. Limited to 250 characters. -->
-			<md:TitleDisplayUnlimited>{{$data['BasicMetadata-type']['LocalizedInfo']['TitleDisplayUnlimited']}}</md:TitleDisplayUnlimited>
+			<md:TitleDisplayUnlimited>{{$LocalizedInfo['TitleDisplayUnlimited']}}</md:TitleDisplayUnlimited>
 			<!-- TitleSort is required by the MEC XSD, but is not used by Amazon. Blank fields such as below are acceptable.  -->
 			<md:TitleSort></md:TitleSort>
+
+			@foreach($LocalizedInfo['ArtReference'] as $ArtReference)
 			<md:ArtReference 
-				resolution="{{$data['BasicMetadata-type']['LocalizedInfo']['ArtReference']['@resolution']}}" 
-				purpose="{{$data['BasicMetadata-type']['LocalizedInfo']['ArtReference']['@purpose']}}">
-				{{$data['BasicMetadata-type']['LocalizedInfo']['ArtReference']['value']}}</md:ArtReference>
+				resolution="$ArtReference['@resolution']}}" 
+				purpose="$ArtReference['@purpose']}}">
+				$ArtReference['value']}}</md:ArtReference>
+			@endforeach
+
 			<!-- <md:ArtReference resolution="3840x2160" purpose="cover">TheGreatMovie-US-16x9.jpg</md:ArtReference>
 			<md:ArtReference resolution="1920x2560" purpose="hero">TheGreatMovie-US-3x4.jpg</md:ArtReference> -->
 			<!-- Summary190 is required by the MEC XSD, but is not required by Amazon. Blank fields such as below are acceptable.  -->
 			<md:Summary190></md:Summary190>
 			
 			<!-- Summary400 is required by Amazon -->
-			<md:Summary400>{{$data['BasicMetadata-type']['LocalizedInfo']['Summary400']}}</md:Summary400>
+			<md:Summary400>{{$LocalizedInfo['Summary400']}}</md:Summary400>
 			
 			<!-- Genres must be submitted using the AV Genre codes, such as below. -->
 			<!-- Genres may be provided in just one, or all LocalizedInfo blocks. See the spec documentation for more detail. -->
 			<!-- At least 1 genre is required. Up to 3 genres are allowed. -->
-			<md:Genre id="{{$data['BasicMetadata-type']['LocalizedInfo']['Genre']['@id']}}"></md:Genre>
+			@foreach($LocalizedInfo['Genre'] as $Genre)
+				<md:Genre id="{{$Genre['@id']}}"></md:Genre>
+			@endforeach
 			<!-- <md:Genre id="av_subgenre_drama_suspense"></md:Genre>
 			<md:Genre id="av_subgenre_drama_historical"></md:Genre> -->
 
 		</md:LocalizedInfo>
+	@endforeach
 
 		<!-- <md:LocalizedInfo language="de-DE">
 			<md:TitleDisplayUnlimited>Die neue Welt </md:TitleDisplayUnlimited>
@@ -52,21 +60,32 @@
 		<!-- <md:ReleaseDate>2015-01-15</md:ReleaseDate> -->
 		
 		<!-- Provide as much release history as possible.  -->
+
+		@php
+			$ReleaseHistory = $data['BasicMetadata-type']['ReleaseHistory'];
+		@endphp
+
 		<md:ReleaseHistory>
-			<md:ReleaseType>{{$data['BasicMetadata-type']['ReleaseHistory']['ReleaseType']}}</md:ReleaseType>
+			<md:ReleaseType>{{$ReleaseHistory['ReleaseType']}}</md:ReleaseType>
 			<md:DistrTerritory>
-				<md:country>{{$data['BasicMetadata-type']['ReleaseHistory']['DistrTerritory']['country']}}</md:country>
+				<md:country>{{$ReleaseHistory['DistrTerritory']['country']}}</md:country>
 			</md:DistrTerritory>
-			<md:Date>{{$data['BasicMetadata-type']['ReleaseHistory']['Date']}}</md:Date>
+			@isset($ReleaseHistory['Date'])
+			<md:Date>{{$ReleaseHistory['Date']}}</md:Date>
+			@endisset
 		</md:ReleaseHistory>
 		
 		<!-- WorkType is Required -->
-		<md:WorkType>{{$data['BasicMetadata-type']['WorkType']}}</md:WorkType>
+		@isset($ReleaseHistory['WorkType'])
+		<md:WorkType>{{$ReleaseHistory['WorkType']}}</md:WorkType>
+		@endisset
 
 		<!-- The ID used in the MMC and in the Avail must also be included in the AltIdentifier section -->
 		<md:AltIdentifier>
-			<md:Namespace>{{$data['BasicMetadata-type']['AltIdentifier']['Namespace']}}</md:Namespace>
-			<md:Identifier>{{$data['BasicMetadata-type']['AltIdentifier']['Identifier']}}</md:Identifier>
+			@foreach($data['BasicMetadata-type']['AltIdentifier'] as $AltIdentifier)
+			<md:Namespace>{{$AltIdentifier['Namespace']}}</md:Namespace>
+			<md:Identifier>{{$AltIdentifier['Identifier']}}</md:Identifier>
+			@endforeach
 		</md:AltIdentifier>
 		<!-- <md:AltIdentifier>
 			<md:Namespace>IMDB</md:Namespace>
@@ -77,11 +96,15 @@
 			<!-- At least one rating is required. If the work is not rated, use <md:notrated>true</md:notrated>  -->
 			<!-- see http://www.movielabs.com/md/ratings/current.html for ratings -->
 			<md:Rating>
-				<md:Region>
-					<md:country>{{$data['BasicMetadata-type']['RatingSet']['Rating']['Region']['country']}}</md:country>
-				</md:Region>
-				<md:System>{{$data['BasicMetadata-type']['RatingSet']['Rating']['System']}}</md:System>
-				<md:Value>{{$data['BasicMetadata-type']['RatingSet']['Rating']['Value']}}</md:Value>
+				@foreach($data['BasicMetadata-type']['RatingSet'] as $RatingSet)
+					@isset($RatingSet)
+					<md:Region>
+						<md:country>{{$RatingSet['Rating']['Region']['country']}}</md:country>
+					</md:Region>
+					<md:System>{{$RatingSet['Rating']['System']}}</md:System>
+					<md:Value>{{$RatingSet['Rating']['Value']}}</md:Value>
+					@endisset
+				@endforeach
 			</md:Rating>
 
 			<!-- <md:Rating>
