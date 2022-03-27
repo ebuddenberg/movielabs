@@ -38,7 +38,7 @@ class MovieController extends Controller
 
     public function downloadMEC(Request $request, $id){
         $movie = Movie::find($id);
-        return response()->view('mec', [
+        return response()->view('mec/index', [
             'data' => $movie->mec
         ])->header('Content-Type', 'text/xml');
     }
