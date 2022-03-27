@@ -44,7 +44,7 @@ class MovieController extends Controller
     }
     public function downloadMMC(Request $request, $id){
         $movie = Movie::find($id);
-        return response()->view('mmc', [
+        return response()->view('mmc/index', [
             'data' => $movie->mmc
         ])->header('Content-Type', 'text/xml');
     }
