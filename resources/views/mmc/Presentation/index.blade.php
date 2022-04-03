@@ -7,31 +7,31 @@
             <manifest:TrackMetadata>
             @isset($Presentation['TrackMetadata'])
                 @php
-                $TackMetadata = $Presentation['TrackMetadata'];
+                $TrackMetadata = $Presentation['TrackMetadata'];
                 @endphp
 
-                @isset($TackMetadata['TrackSelectionNumber'])
-                    <manifest:TrackSelectionNumber>{{$TackMetadata['TrackSelectionNumber']}}</manifest:TrackSelectionNumber>
+                @isset($TrackMetadata['TrackSelectionNumber'])
+                    <manifest:TrackSelectionNumber>{{$TrackMetadata['TrackSelectionNumber']}}</manifest:TrackSelectionNumber>
                 @endisset
 
-                @isset($TrackMeta['VideoTrackReferences'])
-                    @foreach($TrackMeta['VideoTrackReferences'] as $VideoTrackReference)
+                @isset($TrackMetadata['VideoTrackReferences'])
+                    @foreach($TrackMetadata['VideoTrackReferences'] as $VideoTrackReference)
                         <manifest:VideoTrackReference>
                             <manifest:VideoTrackID>{{$VideoTrackReference['VideoTrackID']}}</manifest:VideoTrackID>
                         </manifest:VideoTrackReference>
                     @endforeach
                 @endisset
 
-                @isset($TrackMeta['AudioTrackReferences'])
-                    @foreach($TrackMeta['AudioTrackReferences'] as $AudioTrackReference)
+                @isset($TrackMetadata['AudioTrackReferences'])
+                    @foreach($TrackMetadata['AudioTrackReferences'] as $AudioTrackReference)
                     <manifest:AudioTrackReference>
                         <manifest:AudioTrackID>{{$AudioTrackReference['AudioTrackID']}}</manifest:AudioTrackID>
                     </manifest:AudioTrackReference>
                     @endforeach
                 @endisset
                 
-                @isset($TrackMeta['SubtitleTrackReferences'])
-                    @foreach($TrackMeta['SubtitleTrackReferences'] as $SubtitleTrackReference)
+                @isset($TrackMetadata['SubtitleTrackReferences'])
+                    @foreach($TrackMetadata['SubtitleTrackReferences'] as $SubtitleTrackReference)
                         <manifest:SubtitleTrackReference>
                             <manifest:SubtitleTrackID>{{$SubtitleTrackReference['SubtitleTrackID']}}</manifest:SubtitleTrackID>
                         </manifest:SubtitleTrackReference>
