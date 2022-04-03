@@ -23,8 +23,8 @@
         <!-- AssociatedOrg is used to provide the Partner Alias and is required -->
         <!-- Include the Partner Alias value in the @organizationID attribute and the value of "licensor" in the @role attribute -->
         <md:AssociatedOrg 
-            organizationID="{{$data['BasicMetadata-type']['AssociatedOrg']['@organizationID']}}"
-            role="{{$data['BasicMetadata-type']['AssociatedOrg']['@role']}}">
+            organizationID="Prime Video Partner Alias"
+            role="licensor">
         </md:AssociatedOrg>
         
         <!-- Sequence Info and Parent information is required for TV episodes and seasons -->
