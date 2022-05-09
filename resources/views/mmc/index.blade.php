@@ -6,11 +6,15 @@
     </manifest:Compatibility>
     <!-- Inventory Section -->
     @include('mmc/Inventories/index', $data)
+
     <!--  Presentation Section  -->
     @include('mmc/Presentation/index', $data)
+
     <!-- @include('mmc/PlayableSequences/index', $data) -->
     <!--  Experiences Section   -->
     @include('mmc/Experiences/index', $data)
+
     <!--  ALID Experience Maps Section   -->
     @include('mmc/ALIDExperienceMaps/index', $data)
+    
 </manifest:MediaManifest>

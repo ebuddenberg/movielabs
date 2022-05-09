@@ -1,14 +1,15 @@
 <manifest:Inventory>
-        @foreach($data['Inventories'] as $Inventory)
+    @foreach($data['Inventories'] as $Inventory)
+        <!-- Feature Mezz File -->
         <manifest:Video VideoTrackID="{{$Inventory['Video']['@VideoTrackID']}}">
             <md:Type>{{$Inventory['Video']['Type']}}</md:Type>
             <md:Picture>
-                <md:AspectRatio>{{$Inventory['Video']['Picture']['AspectRatio']}}</md:AspectRatio>
                 <md:WidthPixels>{{$Inventory['Video']['Picture']['WidthPixels']}}</md:WidthPixels>
                 <md:HeightPixels>{{$Inventory['Video']['Picture']['HeightPixels']}}</md:HeightPixels>
+                <md:Progressive>true</md:Progressive>
                 
                 <!-- HDR-10 metadata is required in the manifest -->
-                <md:MasteredColorVolume>
+                <!-- <md:MasteredColorVolume>
                     <md:PrimaryRChromaticity>
                         <md:ChromaticityCIEx>{{$Inventory['Video']['Picture']['MasteredColorVolume']['PrimaryRChromaticity']['ChromaticityCIEx']}}</md:ChromaticityCIEx>
                         <md:ChromaticityCIEy>{{$Inventory['Video']['Picture']['MasteredColorVolume']['PrimaryRChromaticity']['ChromaticityCIEy']}}</md:ChromaticityCIEy>
@@ -31,7 +32,7 @@
                 <md:LightLevel>
                     <md:ContentMax>{{$Inventory['Video']['Picture']['LightLevel']['ContentMax']}}</md:ContentMax>
                     <md:FrameAverageMax>{{$Inventory['Video']['Picture']['LightLevel']['FrameAverageMax']}}</md:FrameAverageMax>
-                </md:LightLevel>
+                </md:LightLevel> -->
             </md:Picture>
             <md:Language>{{$Inventory['Video']['Language']}}</md:Language>
             <manifest:ContainerReference>
@@ -39,6 +40,7 @@
             </manifest:ContainerReference>
         </manifest:Video>
 
+        <!-- Audio for the feature - this is embedded in the feature mezz file -->
         <manifest:Audio AudioTrackID="{{$Inventory['Audio']['@AudioTrackID']}}">
             <md:Type>{{$Inventory['Audio']['Type']}}</md:Type>
             <md:Language>{{$Inventory['Audio']['Language']}}</md:Language>
@@ -46,9 +48,11 @@
                 <manifest:ContainerLocation>{{$Inventory['Audio']['ContainerReference']['ContainerLocation']}}</manifest:ContainerLocation>
             </manifest:ContainerReference>
         </manifest:Audio>
-        
+
+        <!-- Feature subtitle File -->
         <manifest:Subtitle SubtitleTrackID="{{$Inventory['Subtitle']['@SubtitleTrackID']}}">
-            <md:Format>{{$Inventory['Subtitle']['Format']}}</md:Format>
+            <!-- <md:Format>{{$Inventory['Subtitle']['Format']}}</md:Format> -->
+            <md:Format>STL</md:Format>
             <md:Type>{{$Inventory['Subtitle']['Type']}}</md:Type>
             <md:Language>{{$Inventory['Subtitle']['Language']}}</md:Language>
             <md:Encoding>
