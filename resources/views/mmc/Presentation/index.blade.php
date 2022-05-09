@@ -46,5 +46,5 @@
 
             </manifest:Presentation>
         @endforeach
-    @endissete
+    @endisset
 </manifest:Presentations>
