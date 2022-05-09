@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Movie;
 use App\Models\Language;
 use DB;
+use File;
 
 class MovieController extends Controller
 {
@@ -52,5 +53,33 @@ class MovieController extends Controller
     public function allLanguages(Request $request){        
         $langs = Language::get();
         return $langs;
+    }
+
+    public function uploadFile(Request $request)
+    {
+
+        $request->validate([
+            'file'=>'required',
+        ]);
+
+        if($request->file()) {
+            $filenamewithextension = $request->file('file')->getClientOriginalName();
+            $extension = $request->file('file')->getClientOriginalExtension();
+            $fileName = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+            $filePath = $request->file('file')->storeAs('temp', $filenamewithextension, 'public');
+
+            return response()->json([
+                "success" => true,
+                "message" => "File successfully uploaded",
+                "fileName" => $fileName,
+                "extension" => $extension,
+                'fileLink' => asset("storage/".$filePath)
+            ]);
+        }else{
+            return response()->json([
+                "success" => false,
+                "message" => "File is empty",
+            ]);
+        }
     }
 }

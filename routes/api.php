@@ -32,3 +32,5 @@ Route::prefix('movies')->group(function () {
     Route::get('/xml/download/mec/{id}', [MovieController::class, 'downloadMEC']);
     Route::get('/xml/download/mmc/{id}', [MovieController::class, 'downloadMMC']);
 });
+
+Route::post('/file/upload', [MovieController::class, 'uploadFile']);
