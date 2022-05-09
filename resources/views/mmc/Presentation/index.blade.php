@@ -1,8 +1,8 @@
-<manifest:Presentations>
-    @php
+@isset($data['Presentations'])
+    <manifest:Presentations>
+        @php
         $Presentations = $data['Presentations'];
-    @endphp
-    @isset($Presentations)
+        @endphp
         @foreach($Presentations as $Presentation)
 
             <manifest:Presentation PresentationID="{{$Presentation['@PresentationID']}}">
@@ -46,5 +46,5 @@
 
             </manifest:Presentation>
         @endforeach
-    @endisset
-</manifest:Presentations>
+    </manifest:Presentations>
+@endisset
