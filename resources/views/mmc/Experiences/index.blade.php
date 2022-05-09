@@ -1,3 +1,4 @@
+@isset($data['Experiences'])
 @foreach($data['Experiences'] as $Experience)
     <manifest:Experiences>
             <manifest:Experience 
@@ -11,3 +12,4 @@
             </manifest:Experience>
     </manifest:Experiences>
 @endforeach
+@endisset
