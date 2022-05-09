@@ -1,3 +1,4 @@
+@isset($data['BasicMetadata-type']['Inventories'])
 <manifest:Inventory>
     @foreach($data['Inventories'] as $Inventory)
         <!-- Feature Mezz File -->
@@ -68,3 +69,4 @@
         </manifest:Subtitle>
     @endforeach
 </manifest:Inventory>
+@endisset
