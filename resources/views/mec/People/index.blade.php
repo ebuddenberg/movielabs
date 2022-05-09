@@ -1,4 +1,5 @@
 <!-- people are used for the cast and crew.  -->
+@isset($data['BasicMetadata-type']['People'])
 @foreach($data['BasicMetadata-type']['People'] as $People)
     <md:People>
         <md:Job>
@@ -14,3 +15,4 @@
         </md:Name>
     </md:People>
 @endforeach
+@endisset

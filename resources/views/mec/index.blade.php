@@ -28,12 +28,16 @@
         </md:AssociatedOrg>
         
         <!-- Sequence Info and Parent information is required for TV episodes and seasons -->
+        @isset($data['BasicMetadata-type']['SequenceInfo'])
         <md:SequenceInfo>
             <md:Number>{{$data['BasicMetadata-type']['SequenceInfo']['Number']}}</md:Number>
         </md:SequenceInfo>
+        @endisset
+        @isset($data['BasicMetadata-type']['Parent'])
         <md:Parent relationshipType="{{$data['BasicMetadata-type']['Parent']['@relationshipType']}}">
             <md:ParentContentID>{{$data['BasicMetadata-type']['Parent']['ParentContentID']}}</md:ParentContentID>
         </md:Parent>
+        @endisset
     </mdmec:Basic>
 	
 	<!-- CompanyDisplayCredit is used to provide customer-facing studio credits. Required. -->

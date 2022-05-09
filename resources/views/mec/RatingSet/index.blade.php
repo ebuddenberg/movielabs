@@ -6,7 +6,9 @@
         @foreach($data['BasicMetadata-type']['RatingSet'] as $RatingSet)
             @isset($RatingSet)
             <md:Region>
+                @isset($RatingSet['Rating']['Region']['country'])
                 <md:country>{{$RatingSet['Rating']['Region']['country']}}</md:country>
+                @endisset
             </md:Region>
             <md:System>{{$RatingSet['Rating']['System']}}</md:System>
             <md:Value>{{$RatingSet['Rating']['Value']}}</md:Value>
