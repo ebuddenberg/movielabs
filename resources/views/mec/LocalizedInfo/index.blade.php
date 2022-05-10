@@ -1,5 +1,5 @@
-@foreach($data['BasicMetadata-type']['LocalizedInfo'] as $LocalizedInfo)
 @isset($data['BasicMetadata-type']['LocalizedInfo'])
+@foreach($data['BasicMetadata-type']['LocalizedInfo'] as $LocalizedInfo)
 	<md:LocalizedInfo language="{{$LocalizedInfo['@Language']}}">
 		<!-- TitleDisplayUnlimited is required by Amazon. Limited to 250 characters. -->
 		<md:TitleDisplayUnlimited>{{$LocalizedInfo['TitleDisplayUnlimited']}}</md:TitleDisplayUnlimited>
@@ -7,10 +7,7 @@
 		<md:TitleSort></md:TitleSort>
 
 		@foreach($LocalizedInfo['ArtReference'] as $ArtReference)
-		<md:ArtReference 
-			resolution="$ArtReference['@resolution']}}" 
-			purpose="$ArtReference['@purpose']}}">
-			$ArtReference['value']}}</md:ArtReference>
+		<md:ArtReference  resolution="{{$ArtReference['@resolution']}}"  purpose="{{$ArtReference['@purpose']}}">{{$ArtReference['value']}}</md:ArtReference>
 		@endforeach
 
 		<!-- <md:ArtReference resolution="3840x2160" purpose="cover">TheGreatMovie-US-16x9.jpg</md:ArtReference>
@@ -31,5 +28,5 @@
 		<md:Genre id="av_subgenre_drama_historical"></md:Genre> -->
 
 	</md:LocalizedInfo>
+	@endforeach
 @endisset
-@endforeach

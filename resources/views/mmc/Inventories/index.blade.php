@@ -1,4 +1,4 @@
-@isset($data['BasicMetadata-type']['Inventories'])
+@isset($data['Inventories'])
 <manifest:Inventory>
     @foreach($data['Inventories'] as $Inventory)
         <!-- Feature Mezz File -->

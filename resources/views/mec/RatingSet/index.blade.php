@@ -3,8 +3,8 @@
     <!-- At least one rating is required. If the work is not rated, use <md:notrated>true</md:notrated>  -->
     <!-- see http://www.movielabs.com/md/ratings/current.html for ratings -->
     <md:Rating>
-        @foreach($data['BasicMetadata-type']['RatingSet'] as $RatingSet)
-            @isset($RatingSet)
+        @isset($data['BasicMetadata-type']['RatingSet'])
+            @foreach($data['BasicMetadata-type']['RatingSet'] as $RatingSet)
             <md:Region>
                 @isset($RatingSet['Rating']['Region']['country'])
                 <md:country>{{$RatingSet['Rating']['Region']['country']}}</md:country>
@@ -12,8 +12,8 @@
             </md:Region>
             <md:System>{{$RatingSet['Rating']['System']}}</md:System>
             <md:Value>{{$RatingSet['Rating']['Value']}}</md:Value>
-            @endisset
-        @endforeach
+            @endforeach
+        @endisset
     </md:Rating>
 
     <!-- <md:Rating>
