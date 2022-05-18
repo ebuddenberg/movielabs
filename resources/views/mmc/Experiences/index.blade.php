@@ -1,5 +1,6 @@
 @isset($data['Experiences'])
 @foreach($data['Experiences'] as $Experience)
+    @isset($Experience)
     <manifest:Experiences>
             <manifest:Experience 
                 ExperienceID="{{$Experience['@ExperienceID']}}" 
@@ -11,5 +12,6 @@
                 </manifest:Audiovisual>
             </manifest:Experience>
     </manifest:Experiences>
+    @endisset
 @endforeach
 @endisset
