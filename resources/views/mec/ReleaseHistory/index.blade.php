@@ -1,7 +1,7 @@
 
 
-<md:ReleaseYear>$data['BasicMetadata-type']['ReleaseYear']</md:ReleaseYear>
-<md:ReleaseDate>$data['BasicMetadata-type']['ReleaseDate']</md:ReleaseDate>
+<md:ReleaseYear>{{$data['BasicMetadata-type']['ReleaseYear']}}</md:ReleaseYear>
+<md:ReleaseDate>{{$data['BasicMetadata-type']['ReleaseDate']}}</md:ReleaseDate>
 
 @php
     $ReleaseHistory = $data['BasicMetadata-type']['ReleaseHistory'];
