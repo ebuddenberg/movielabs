@@ -1,7 +1,12 @@
 
 
+@isset($data['BasicMetadata-type']['ReleaseYear'])
 <md:ReleaseYear>{{$data['BasicMetadata-type']['ReleaseYear']}}</md:ReleaseYear>
+@endisset
+
+@isset($data['BasicMetadata-type']['ReleaseDate'])
 <md:ReleaseDate>{{$data['BasicMetadata-type']['ReleaseDate']}}</md:ReleaseDate>
+@endisset
 
 @php
     $ReleaseHistory = $data['BasicMetadata-type']['ReleaseHistory'];

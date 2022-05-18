@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Movie;
 use App\Models\Language;
+use SoapBox\Formatter\Formatter;
 use DB;
 use File;
 
@@ -39,15 +40,20 @@ class MovieController extends Controller
 
     public function downloadMEC(Request $request, $id){
         $movie = Movie::find($id);
-        return response()->view('mec/index', [
+        return view('mec/index', [
             'data' => $movie->mec
-        ])->header('Content-Type', 'text/xml');
+        ])->render();
     }
     public function downloadMMC(Request $request, $id){
         $movie = Movie::find($id);
-        return response()->view('mmc/index', [
+        $html = view('mmc/index', [
             'data' => $movie->mmc
-        ])->header('Content-Type', 'text/xml');
+        ])->render();
+        return $html;
+
+        // return response()->view('mmc/index', [
+        //     'data' => $movie->mmc
+        // ])->header('Content-Type', 'text/xml');
     }
 
     public function allLanguages(Request $request){        
