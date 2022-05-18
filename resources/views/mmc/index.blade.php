@@ -10,7 +10,6 @@
     <!--  Presentation Section  -->
     @include('mmc/Presentation/index', $data)
 
-    <!-- @include('mmc/PlayableSequences/index', $data) -->
     <!--  Experiences Section   -->
     @include('mmc/Experiences/index', $data)
 
