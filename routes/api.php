@@ -29,8 +29,8 @@ Route::prefix('movies')->group(function () {
     Route::delete('/{id}', [MovieController::class, 'delete']);
     Route::get('/{id}', [MovieController::class, 'show']);
     Route::get('/languages/all', [MovieController::class, 'allLanguages']);
-    Route::get('/xml/download/mec/{id}', [MovieController::class, 'downloadMEC']);
-    Route::get('/xml/download/mmc/{id}', [MovieController::class, 'downloadMMC']);
+    Route::get('/xml/download/mec/{id}.xml', [MovieController::class, 'downloadMEC']);
+    Route::get('/xml/download/mmc/{id}.xml', [MovieController::class, 'downloadMMC']);
 });
 
 Route::post('/file/upload', [MovieController::class, 'uploadFile']);

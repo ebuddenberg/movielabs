@@ -40,9 +40,10 @@ class MovieController extends Controller
 
     public function downloadMEC(Request $request, $id){
         $movie = Movie::find($id);
-        return view('mec/index', [
+        return response()->view('mec/index', [
             'data' => $movie->mec
-        ])->render();
+        ])->header('Content-Type', 'text/xml');
+
     }
     public function downloadMMC(Request $request, $id){
         $movie = Movie::find($id);
@@ -50,10 +51,6 @@ class MovieController extends Controller
             'data' => $movie->mmc
         ])->render();
         return $html;
-
-        // return response()->view('mmc/index', [
-        //     'data' => $movie->mmc
-        // ])->header('Content-Type', 'text/xml');
     }
 
     public function allLanguages(Request $request){        
