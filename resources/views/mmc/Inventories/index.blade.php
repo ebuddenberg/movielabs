@@ -8,7 +8,6 @@
                 <md:WidthPixels>{{$Inventory['Video']['Picture']['WidthPixels']}}</md:WidthPixels>
                 <md:HeightPixels>{{$Inventory['Video']['Picture']['HeightPixels']}}</md:HeightPixels>
                 <md:Progressive>true</md:Progressive>
-                
                 <!-- HDR-10 metadata is required in the manifest -->
                 <!-- <md:MasteredColorVolume>
                     <md:PrimaryRChromaticity>
